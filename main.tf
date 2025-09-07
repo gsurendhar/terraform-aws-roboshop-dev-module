@@ -37,7 +37,7 @@ resource "terraform_data" "main" {
 
   provisioner "file" {
     source      = "bootstrap.sh"
-    destination = "/tmp/bootstrap.sh"
+    destination = "/tmp/${var.component}.sh"
   }
   connection {
     type     = "ssh"
@@ -47,8 +47,8 @@ resource "terraform_data" "main" {
   }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/bootstrap.sh",
-      "sudo bash /tmp/bootstrap.sh ${var.environment} ${var.component} "
+      "chmod +x /tmp/${var.component}.sh",
+      "sudo sh /tmp/${var.component}.sh ${var.component} ${var.environment}"
     ]
   }
 }
