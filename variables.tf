@@ -3,7 +3,7 @@ variable "project" {
 }
 
 variable "environment" {
-  default = "dev"
+ 
 }
 
 variable "component" {
